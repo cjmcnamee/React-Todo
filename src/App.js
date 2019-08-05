@@ -1,26 +1,27 @@
 import React from 'react';
+import TodoForm from './components/TodoComponents/TodoForm'
 
 const todo = [
   {
     task: "take out trash",
     id: 1,
     completed: false
-  }
+  },
   {
     task: "do the dishes",
     id: 2,
     completed: false
-  }
+  },
   {
     task: "wipe countertops",
     id: 3,
     completed: false
-  }
+  },
   {
     task: "sweep and vaccuum",
     id: 4,
     completed: false
-  }
+  },
   {
     task: "make bed",
     id: 5,
@@ -42,6 +43,9 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <div>
+          <TodoForm />
+        </div>
       </div>
     );
   }
