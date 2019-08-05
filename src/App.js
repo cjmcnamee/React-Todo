@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import TodoForm from './components/TodoComponents/TodoForm'
 import TodoList from './components/TodoComponents/TodoList'
 
+import "./components/TodoComponents/Todo.css"
+
 const todo = [
   {
     task: "take out trash",
@@ -38,12 +40,13 @@ class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
   constructor() {
     super();
-    this.setState = {
+    this.state = {
       todo: todo
     }
   }
 
   toggleTask = id => {
+    console.log('teehee')
     this.setState({
       todo: this.state.todo.map(task => {
         if (task.id === id) {
@@ -69,16 +72,25 @@ class App extends React.Component {
     });
   }
 
+  clearTask = () => {
+    this.setState({
+      todo: this.state.todo.filter(task => !task.completed)
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <h2>Welcome to your Todo App!</h2>
-        <TodoList />
+        <TodoForm addTask={this.addTask}/>
+        <TodoList
+          todo={this.state.todo}
+          toggleTask={this.toggleTask}
+        />
         <div className="notApp">
-          <TodoForm
-            todo={this.state.todo}
-            toggleTask={this.toggleTask}
-           />
+          <button className="clear-task" onClick={this.clearTask}>
+            Clear Tasks
+          </button>
         </div>
       </div>
     );
