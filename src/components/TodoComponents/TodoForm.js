@@ -4,7 +4,7 @@ class TodoForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      item: ""
+      task: ""
     };
   }
   handleChanges = event => {
@@ -13,21 +13,21 @@ class TodoForm extends React.Component {
     })
   }
 
-  submitItem = event => {
+  submitTask = event => {
     event.preventDefault();
-    this.props.addItem(this.state.item)
+    this.props.addTask(this.state.task)
   };
 
   render() {
     return (
-      <form onSubmit={this.submitItem}>
+      <form onSubmit={this.submitTask}>
         <input
           type="text"
-          value={this.state.item}
-          name="item"
+          value={this.state.task}
+          name="task"
           onChange={this.handleChanges}
         />
-        <button>button</button>
+        <button>Add Task</button>
       </form>
     )
   }
