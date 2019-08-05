@@ -1,5 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import TodoForm from './components/TodoComponents/TodoForm'
+import TodoList from './components/TodoComponents/TodoList'
 
 const todo = [
   {
@@ -36,19 +39,53 @@ class App extends React.Component {
   constructor() {
     super();
     this.setState = {
-
+      todo: todo
     }
   }
+
+  toggleTask = id => {
+    this.setState({
+      todo: this.state.todo.map(task => {
+        if (task.id === id) {
+          return {
+            ...task,
+            completed: !task.completed
+          };
+        } else {
+          return task;
+        }
+      })
+    })
+  }
+
+  addTask = taskName => {
+    const newTask = {
+      task: taskName,
+      id: Date.now(),
+      completed: false
+    };
+    this.setState({
+      todo: [...this.state.todo, newTask]
+    });
+  }
+
   render() {
     return (
-      <div>
+      <div className="App">
         <h2>Welcome to your Todo App!</h2>
-        <div>
-          <TodoForm />
+        <TodoList />
+        <div className="notApp">
+          <TodoForm
+            todo={this.state.todo}
+            toggleTask={this.toggleTask}
+           />
         </div>
       </div>
     );
   }
 }
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(<App />, rootElement);
 
 export default App;

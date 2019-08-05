@@ -6,9 +6,9 @@ const Todo = props => {
       className={`task${props.task.completed ? ' completed' : ''}`}
       onClick={() => props.toggleTask(props.task.id)}
     >
-      <p>{props.item.name}</p>
+      <p>{props.task.task}</p>
     </div>
-  )
-}
+  );
+};
 
 export default Todo;

@@ -7,11 +7,12 @@ class TodoForm extends React.Component {
       task: ""
     };
   }
+
   handleChanges = event => {
     this.setState({
       [event.target.name]: event.target.value
-    })
-  }
+    });
+  };
 
   submitTask = event => {
     event.preventDefault();
